@@ -1,0 +1,124 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "name": "Shield Bearer",
+      "cost": 2,
+      "power": 3,
+      "ability": {
+        "type": "GainPoints",
+        "value": 2
+      }
+    },
+    {
+      "id": 2,
+      "name": "Thief",
+      "cost": 3,
+      "power": 2,
+      "ability": {
+        "type": "StealPoints",
+        "value": 3
+      }
+    },
+    {
+      "id": 3,
+      "name": "Berserker",
+      "cost": 4,
+      "power": 3,
+      "ability": {
+        "type": "DoublePower",
+        "value": 1
+      }
+    },
+    {
+      "id": 4,
+      "name": "Scout",
+      "cost": 1,
+      "power": 1,
+      "ability": {
+        "type": "DrawExtraCard",
+        "value": 1
+      }
+    },
+    {
+      "id": 5,
+      "name": "Warrior",
+      "cost": 2,
+      "power": 4,
+      "ability": {
+        "type": "None",
+        "value": 0
+      }
+    },
+    {
+      "id": 6,
+      "name": "Assassin",
+      "cost": 3,
+      "power": 2,
+      "ability": {
+        "type": "DiscardOpponentRandomCard",
+        "value": 1
+      }
+    },
+    {
+      "id": 7,
+      "name": "Mage",
+      "cost": 5,
+      "power": 4,
+      "ability": {
+        "type": "GainPoints",
+        "value": 3
+      }
+    },
+    {
+      "id": 8,
+      "name": "Knight",
+      "cost": 3,
+      "power": 5,
+      "ability": {
+        "type": "None",
+        "value": 0
+      }
+    },
+    {
+      "id": 9,
+      "name": "Paladin",
+      "cost": 4,
+      "power": 5,
+      "ability": {
+        "type": "GainPoints",
+        "value": 2
+      }
+    },
+    {
+      "id": 10,
+      "name": "Rogue",
+      "cost": 2,
+      "power": 2,
+      "ability": {
+        "type": "StealPoints",
+        "value": 2
+      }
+    },
+    {
+      "id": 11,
+      "name": "Titan",
+      "cost": 6,
+      "power": 6,
+      "ability": {
+        "type": "DoublePower",
+        "value": 1
+      }
+    },
+    {
+      "id": 12,
+      "name": "Archer",
+      "cost": 1,
+      "power": 2,
+      "ability": {
+        "type": "None",
+        "value": 0
+      }
+    }
+  ]
+}
