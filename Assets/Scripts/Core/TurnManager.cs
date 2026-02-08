@@ -1,16 +1,29 @@
+using System;
 using UnityEngine;
 
 public class TurnManager
 {
-    public int currentTurn = 0;
+    public int CurrentTurn { get; private set; } = 1;
+    public int MaxTurns = 6;
+    public float TurnTime = 30f;
+
+    public event Action OnTurnStarted;
+    public event Action OnTurnEnded;
+
+    public int GetAvailableCost() => CurrentTurn;
+
+    public void StartTurn()
+    {
+        OnTurnStarted?.Invoke();
+    }
+
+    public void EndTurn()
+    {
+        OnTurnEnded?.Invoke();
+    }
+
     public void NextTurn()
     {
-        currentTurn++;
-        Debug.Log("Turn " + currentTurn);
-    
-        if (currentTurn > 6)
-        {
-            Debug.Log("Game Over!");
-        }
+        CurrentTurn++;
     }
 }
