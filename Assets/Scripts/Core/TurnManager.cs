@@ -1,28 +1,43 @@
 using System;
-using UnityEngine;
 
 public class TurnManager
 {
     public int CurrentTurn { get; private set; } = 1;
     public int MaxTurns = 6;
-    public float TurnTime = 30f;
+    public float TurnDuration = 30f;
 
-    public event Action OnTurnStarted;
-    public event Action OnTurnEnded;
+    private float timeLeft;
+    private bool running;
 
-    public int GetAvailableCost() => CurrentTurn;
+    public event Action<float> OnTimerTick;
+    public event Action OnTimerExpired;
 
     public void StartTurn()
     {
-        OnTurnStarted?.Invoke();
+        timeLeft = TurnDuration;
+        running = true;
+    }
+
+    public void Tick(float deltaTime)
+    {
+        if (!running) return;
+
+        timeLeft -= deltaTime;
+        OnTimerTick?.Invoke(timeLeft);
+
+        if (timeLeft <= 0f)
+        {
+            running = false;
+            OnTimerExpired?.Invoke();
+        }
     }
 
     public void EndTurn()
     {
-        OnTurnEnded?.Invoke();
+        running = false;
     }
 
-    public void NextTurn()
+    public void AdvanceTurn()
     {
         CurrentTurn++;
     }

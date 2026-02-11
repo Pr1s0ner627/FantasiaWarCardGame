@@ -1,4 +1,4 @@
-using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class CardData
@@ -15,4 +15,10 @@ public class AbilityData
 {
     public string type;
     public int value;
+}
+
+[System.Serializable]
+public class CardListWrapper
+{
+    public List<CardData> cards;
 }
