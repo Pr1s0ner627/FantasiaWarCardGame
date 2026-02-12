@@ -12,4 +12,15 @@ public class NetworkServices : MonoBehaviour
     {
         NetworkServer.SendToAll(new JsonNetMessage { json = json });
     }
+
+    public void OnEndTurnClicked()
+    {
+        var msg = new ActionMessage { 
+            action = "endTurn", 
+            playerId = NetworkClient.isHost ? "host" : "client"
+            };
+
+        var json = JsonUtility.ToJson(msg);
+        Send(json);
+    }
 }

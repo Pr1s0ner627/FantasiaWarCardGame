@@ -11,10 +11,15 @@ public class HandView : MonoBehaviour
         foreach (Transform child in handRoot)
             Destroy(child.gameObject);
 
+        float scale = 1f;
+        if (hand.Count > 5)
+            scale = Mathf.Clamp(1f - (hand.Count - 5) * 0.01f, 0.75f, 1f);
+        
         foreach (var card in hand)
         {
             var go = Instantiate(cardPrefab, handRoot);
             var view = go.GetComponent<CardView>();
+            go.transform.localScale = Vector3.one * scale;
             view.Bind(card);
         }
     }

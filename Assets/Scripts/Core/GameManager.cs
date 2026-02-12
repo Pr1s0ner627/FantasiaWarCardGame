@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
             {
                 Player1.Hand.Remove(handCard);
                 Player1.Folded.Add(handCard);
+                RevealManager.Resolve(Player1, Player2);
+                boardView.RenderFolded(Player1.Folded, Player2.Folded);
             }
             else
             {

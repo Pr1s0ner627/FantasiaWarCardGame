@@ -130,6 +130,7 @@ namespace Mirror
         public static ConnectionQualityMethod connectionQualityMethod = ConnectionQualityMethod.Simple;
         public static float connectionQualityInterval = 3;
         static double lastConnectionQualityUpdate;
+        public static bool isHost;
 
         /// <summary>
         /// Invoked when connection quality changes.

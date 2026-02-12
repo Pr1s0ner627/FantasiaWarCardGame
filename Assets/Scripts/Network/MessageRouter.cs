@@ -4,16 +4,27 @@ using UnityEngine;
 public class MessageRouter : MonoBehaviour
 {
     public GameManager gameManager;
+    public BoardView boardView;
 
-    void Awake()
+    void OnEnable()
     {
-        NetworkClient.RegisterHandler<JsonNetMessage>(OnMessage);
+        NetworkClient.RegisterHandler<JsonNetMessage>(OnClientMessage);
         NetworkServer.RegisterHandler<JsonNetMessage>(OnMessageServer);
     }
 
-    void OnMessage(JsonNetMessage msg)
+    void OnDisable()
     {
-        Handle(msg.json);
+        NetworkClient.UnregisterHandler<JsonNetMessage>();
+        NetworkServer.UnregisterHandler<JsonNetMessage>();
+    }
+
+    void OnClientMessage(JsonNetMessage msg)
+    {
+        var action = JsonUtility.FromJson<ActionMessage>(msg.json);
+        if (action.action == "sync")    {
+            gameManager.RefreshUI();
+            boardView.RenderFolded(gameManager.Player1.Folded, gameManager.Player2.Folded);
+        }
     }
 
     void OnMessageServer(NetworkConnectionToClient conn, JsonNetMessage msg)
@@ -24,9 +35,12 @@ public class MessageRouter : MonoBehaviour
     void Handle(string json)
     {
         var action = JsonUtility.FromJson<ActionMessage>(json);
-        if (action.action == "endTurn")
+        if (NetworkServer.active && action.action == "endTurn")
         {
             gameManager.EndTurn(action.playerId);
+
+            var sync = JsonUtility.ToJson(new ActionMessage { action = "sync"}); 
+            NetworkServer.SendToAll(new JsonNetMessage { json = sync });
         }
     }
 }
